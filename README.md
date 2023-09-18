@@ -21,7 +21,7 @@ pip install packetizer
 Assuming you have a `module.py` full of classes, just run:
 
 ```bash
-packetize module.py
+packetizer module.py
 ```
 
 Voilà, you'll get a folder named `module` with each class in its own `.py` file and an `__init__.py` tying it all together as a package.

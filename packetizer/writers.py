@@ -1,6 +1,5 @@
 import os
 
-from packetizer.ast_utils import get_used_names
 from packetizer.utils import convert_camel_case_to_snake_case
 
 
@@ -15,19 +14,6 @@ def write_class_files(classes, imports, output_dir):
             f.write("\n")
             f.write(f"\n{class_content}\n")
             f.write("\n")
-
-        used_names = get_used_names(file_path)
-
-        with open(file_path, 'r') as f:
-            lines = f.readlines()
-
-        with open(file_path, 'w') as f:
-            for line in lines:
-                if line.startswith('import') or line.startswith('from'):
-                    import_name = line.split()[1]
-                    if import_name not in used_names:
-                        continue
-                f.write(line)
 
 
 def write_init_file(class_dict, output_dir):

@@ -1,7 +1,8 @@
 import os # noqa: F401
+from .class_demo import ClassDemo
 
 
-class Hello:
+class Hello(ClassDemo):
     def __init__(self):
         self.hello = "hello"
 
