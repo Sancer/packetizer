@@ -1,6 +1,7 @@
 import ast
 import os
 import typer
+from typing_extensions import Annotated
 
 from packetizer.class_extractor import ClassExtractor
 from packetizer.utils import assert_file_exist, assert_file_is_python_file
@@ -10,7 +11,7 @@ app = typer.Typer()
 
 
 @app.command()
-def main(file: str):
+def main(file: str, suffix: Annotated[str, typer.Option(help="Add suffix to the file names")] = ""):
     output_dir, _ = os.path.splitext(file)
 
     assert_file_exist(file)
@@ -23,7 +24,7 @@ def main(file: str):
     extractor = ClassExtractor()
     extractor.visit(tree)
 
-    write_to_files(extractor.classes, extractor.imports, output_dir)
+    write_to_files(extractor.classes, extractor.imports, output_dir, suffix)
 
 
 if __name__ == "__main__":
