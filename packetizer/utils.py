@@ -1,9 +1,15 @@
 import os
+import re
+
 import typer
 
 
 def convert_camel_case_to_snake_case(name):
-    return "".join(["_" + c.lower() if c.isupper() else c for c in name]).lstrip("_")
+    # Insert underscores before uppercase letters followed by lowercase letters
+    _name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    # Insert underscores between lowercase or digit and uppercase letters
+    _name = re.sub('([a-z0-9])([A-Z])', r'\1_\2', _name).lower()
+    return _name
 
 
 def assert_file_exist(file_path):

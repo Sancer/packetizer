@@ -3,9 +3,13 @@ import os
 from packetizer.utils import convert_camel_case_to_snake_case
 
 
-def write_class_files(classes, imports, output_dir):
+def write_class_files(classes, imports, output_dir, suffix):
     for class_name, class_content in classes.items():
         file_name = convert_camel_case_to_snake_case(class_name)
+
+        if suffix:
+            file_name = f"{file_name}_{suffix}"
+
         file_path = f"{output_dir}/{file_name}.py"
 
         with open(file_path, "w") as f:
@@ -23,10 +27,10 @@ def write_init_file(class_dict, output_dir):
             f.write(f"from .{file_name} import {class_name}\n")
 
 
-def write_to_files(class_dict, imports, output_dir):
+def write_to_files(class_dict, imports, output_dir, suffix):
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
 
-    write_class_files(classes=class_dict, imports=imports, output_dir=output_dir)
+    write_class_files(classes=class_dict, imports=imports, output_dir=output_dir, suffix=suffix)
 
     write_init_file(class_dict, output_dir)
