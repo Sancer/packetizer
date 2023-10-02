@@ -7,11 +7,9 @@ from packetizer.utils import convert_camel_case_to_snake_case
 def get_import_statements(imports, used_names: set) -> str:
     import_statements = ""
     for imp in imports:
-
         if imp.names:
             import_statement = f"from {imp.module} import "
             for name in imp.names:
-
                 if name.alias and name.alias in used_names:
                     import_statement += f"{name.name} as {name.alias}, "
 
@@ -22,7 +20,6 @@ def get_import_statements(imports, used_names: set) -> str:
                 import_statements += f"{import_statement[:-2]}\n"
 
         else:
-
             if imp.alias and imp.alias in used_names:
                 import_statements += f"import {imp.module} as  {imp.alias}\n"
 

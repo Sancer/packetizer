@@ -1,19 +1,18 @@
 import ast
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
 class NameDto:
     name: str
-    alias: Optional[str]
+    alias: str | None
 
 
 @dataclass
 class ImportDto:
     module: str
-    alias: Optional[str]
-    names: Optional[list[NameDto]]
+    alias: str | None
+    names: list[NameDto] | None
 
 
 class ClassExtractor(ast.NodeVisitor):
@@ -35,5 +34,5 @@ class ClassExtractor(ast.NodeVisitor):
         self.imports.append(import_dto)
 
     def visit_ClassDef(self, node: ast.ClassDef):
-        source_lines = ast.unparse(node).split('\n')
+        source_lines = ast.unparse(node).split("\n")
         self.classes[node.name] = "\n".join(source_lines)

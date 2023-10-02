@@ -1,7 +1,8 @@
 import ast
 import os
+from typing import Annotated
+
 import typer
-from typing_extensions import Annotated
 
 from packetizer.class_extractor import ClassExtractor
 from packetizer.utils import assert_file_exist, assert_file_is_python_file
@@ -17,7 +18,7 @@ def main(file: str, suffix: Annotated[str, typer.Option(help="Add suffix to the 
     assert_file_exist(file)
     assert_file_is_python_file(file)
 
-    with open(file, "r") as f:
+    with open(file) as f:
         content = f.read()
 
     tree = ast.parse(content)
@@ -29,4 +30,3 @@ def main(file: str, suffix: Annotated[str, typer.Option(help="Add suffix to the 
 
 if __name__ == "__main__":
     app()
-
