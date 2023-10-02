@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "packetizer"
-version = "0.1.7"
+version = "0.1.8"
 description = ""
 authors = ["Uriel Reina <urielreina@gmail.com>", "Pol Lopez <pol.lopez.cano@gmail.com>"]
 readme = "README.md"
