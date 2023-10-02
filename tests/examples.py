@@ -1,4 +1,5 @@
-import os # noqa: F401
+import os  # noqa: F401
+
 from .class_demo import ClassDemo
 
 
